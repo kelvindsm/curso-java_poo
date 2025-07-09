@@ -1,22 +1,18 @@
 package composicoes.EFComposicoes.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class OrderItem {
 
     private Integer quantity;
     private Double price;
-
-
-
+    private Product product;
 
     public OrderItem() {
     }
 
-    public OrderItem(Integer quantity, Double price, List<Product> items) {
+    public OrderItem(Integer quantity, Double price, Product product) {
         this.quantity = quantity;
         this.price = price;
+        this.product = product;
     }
 
     public Integer getQuantity() {
@@ -35,7 +31,26 @@ public class OrderItem {
         this.price = price;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public double subtotal () {
         return quantity * price;
+    }
+
+    @Override
+    public String toString() {
+        return product.getName()
+                + ", $"
+                + String.format("%.2f", price)
+                + ", Quantidade"
+                + quantity
+                + ", Total: $"
+                + String.format("%.2f", subtotal());
     }
 }

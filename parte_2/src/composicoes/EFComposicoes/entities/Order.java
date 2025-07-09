@@ -1,12 +1,15 @@
 package composicoes.EFComposicoes.entities;
 
-import enumeracoes.enums.OrderStatus;
+import composicoes.EFComposicoes.enums.OrderStatus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     private Date moment;
     private OrderStatus status;
@@ -14,14 +17,12 @@ public class Order {
 
     private List<OrderItem> items = new ArrayList<>();
 
-    public Order() {
-    }
-
     public Order(Date moment, OrderStatus status, Client client) {
         this.moment = moment;
         this.status = status;
         this.client = client;
     }
+
 
     public Date getMoment() {
         return moment;
@@ -66,5 +67,23 @@ public class Order {
             sum += item.subtotal();
         }
         return sum;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Data do pedido: ");
+        sb.append(sdf.format(moment) + "\n");
+        sb.append("Status do pedido: ");
+        sb.append(status + "\n");
+        sb.append("Cliente: ");
+        sb.append(client + "\n");
+        sb.append("Itens pedidos: \n");
+        for (OrderItem item : items) {
+            sb.append(item + "\n");
+        }
+        sb.append("Preço total: $");
+        sb.append(String.format("%.2f", total()));
+        return sb.toString();
     }
 }

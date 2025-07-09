@@ -1,15 +1,15 @@
 package composicoes.EFComposicoes.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Client {
 
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     private String name;
     private String email;
     private Date birthdate;
-
-    public Client() {
-    }
 
     public Client(String name, String email, Date birthdate) {
         this.name = name;
@@ -39,5 +39,10 @@ public class Client {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + sdf.format(birthdate) + ") - " + email;
     }
 }
