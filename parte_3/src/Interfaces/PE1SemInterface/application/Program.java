@@ -2,6 +2,7 @@ package Interfaces.PE1SemInterface.application;
 
 import Interfaces.PE1SemInterface.model.entities.CarRental;
 import Interfaces.PE1SemInterface.model.entities.Vehicle;
+import Interfaces.PE1SemInterface.model.services.BrazilTaxService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,6 +25,10 @@ public class Program {
         LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), fmt);
 
         CarRental cr = new CarRental(start, finish, new Vehicle(carModel));
+
+        BrazilTaxService taxService = new BrazilTaxService();
+
+        System.out.println(taxService.tax(50.0));
 
         sc.close();
     }
