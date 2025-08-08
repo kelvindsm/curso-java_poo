@@ -3,6 +3,7 @@ package Interfaces.PE1SemInterface.application;
 import Interfaces.PE1SemInterface.model.entities.CarRental;
 import Interfaces.PE1SemInterface.model.entities.Vehicle;
 import Interfaces.PE1SemInterface.model.services.BrazilTaxService;
+import Interfaces.PE1SemInterface.model.services.RentalService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,16 +20,30 @@ public class Program {
         System.out.println("Entre com os dados do aluguel");
         System.out.print("Modelo do carro: ");
         String carModel = sc.nextLine();
-        System.out.println("Data e hora da retirada: ");
+        System.out.print("Data e hora da retirada: ");
         LocalDateTime start = LocalDateTime.parse(sc.nextLine(), fmt);
-        System.out.println("Data e hora da retorno: ");
+        System.out.print("Data e hora da retorno: ");
         LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), fmt);
 
         CarRental cr = new CarRental(start, finish, new Vehicle(carModel));
 
-        BrazilTaxService taxService = new BrazilTaxService();
+        System.out.print("Entre com o preço por hora: ");
+        double pricePerHour = sc.nextDouble();
+        System.out.print("Entre com o preço por dia: ");
+        double pricePerDay = sc.nextDouble();
 
-        System.out.println(taxService.tax(50.0));
+        RentalService rentalService = new RentalService(pricePerDay, pricePerHour, new BrazilTaxService());
+
+        rentalService.processInvoice(cr);
+
+        System.out.println();
+
+        System.out.println("FATURA: ");
+
+        System.out.println("Pagamento básico: " + cr.getInvoice().getBasicPayment());
+        System.out.println("Imposto: " + cr.getInvoice().getTax());
+        System.out.println("Pagamento total: " + cr.getInvoice().getTotalPayment());
+
 
         sc.close();
     }
