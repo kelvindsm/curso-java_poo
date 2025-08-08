@@ -10,9 +10,12 @@ public class RentalService {
     private Double pricePerDay;
     private Double pricePerHour;
 
-    private BrazilTaxService taxService; /* não é uma boa prática fazer uma declaração desse tipo na classe, visto que pode ser que essas regras podem mudar para outro país, no exemplo atual está aclopado apenas para o brasil */
+    /* private BrazilTaxService taxService; : não é uma boa prática fazer uma declaração desse tipo na classe,
+    visto que pode ser que essas regras podem mudar para outro país, no exemplo atual está aclopado apenas para o brasil */
 
-    public RentalService(Double pricePerDay, Double pricePerHour, BrazilTaxService taxService) {
+    private TaxService taxService; /* solução recomendada */
+
+    public RentalService(Double pricePerDay, Double pricePerHour, TaxService taxService) {
         this.pricePerDay = pricePerDay;
         this.pricePerHour = pricePerHour;
         this.taxService = taxService;
