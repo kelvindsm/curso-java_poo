@@ -1,4 +1,4 @@
-package Interfaces.PE1SemInterface.model.entities;
+package Interfaces.PE1.model.entities;
 
 public class Invoice {
 

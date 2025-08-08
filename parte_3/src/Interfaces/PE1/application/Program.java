@@ -1,9 +1,9 @@
-package Interfaces.PE1SemInterface.application;
+package Interfaces.PE1.application;
 
-import Interfaces.PE1SemInterface.model.entities.CarRental;
-import Interfaces.PE1SemInterface.model.entities.Vehicle;
-import Interfaces.PE1SemInterface.model.services.BrazilTaxService;
-import Interfaces.PE1SemInterface.model.services.RentalService;
+import Interfaces.PE1.model.entities.CarRental;
+import Interfaces.PE1.model.entities.Vehicle;
+import Interfaces.PE1.model.services.BrazilTaxService;
+import Interfaces.PE1.model.services.RentalService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,9 +40,9 @@ public class Program {
 
         System.out.println("FATURA: ");
 
-        System.out.println("Pagamento básico: " + cr.getInvoice().getBasicPayment());
-        System.out.println("Imposto: " + cr.getInvoice().getTax());
-        System.out.println("Pagamento total: " + cr.getInvoice().getTotalPayment());
+        System.out.println("Pagamento básico: " + String.format("%.2f", cr.getInvoice().getBasicPayment()));
+        System.out.println("Imposto: " + String.format("%.2f", cr.getInvoice().getTax()));
+        System.out.println("Pagamento total: " + String.format("%.2f", cr.getInvoice().getTotalPayment()));
 
 
         sc.close();

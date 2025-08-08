@@ -1,7 +1,7 @@
-package Interfaces.PE1SemInterface.model.services;
+package Interfaces.PE1.model.services;
 
-import Interfaces.PE1SemInterface.model.entities.CarRental;
-import Interfaces.PE1SemInterface.model.entities.Invoice;
+import Interfaces.PE1.model.entities.CarRental;
+import Interfaces.PE1.model.entities.Invoice;
 
 import java.time.Duration;
 
@@ -10,7 +10,7 @@ public class RentalService {
     private Double pricePerDay;
     private Double pricePerHour;
 
-    private BrazilTaxService taxService;
+    private BrazilTaxService taxService; /* não é uma boa prática fazer uma declaração desse tipo na classe, visto que pode ser que essas regras podem mudar para outro país, no exemplo atual está aclopado apenas para o brasil */
 
     public RentalService(Double pricePerDay, Double pricePerHour, BrazilTaxService taxService) {
         this.pricePerDay = pricePerDay;
